@@ -1,3 +1,4 @@
+import java.net.{InetAddress, Inet4Address}
 import javax.ws.rs.{GET, Path}
 
 /**
@@ -7,5 +8,5 @@ import javax.ws.rs.{GET, Path}
 class host {
 
   @GET
-  def name() = "Hello World"
+  def name() = "Hello World from host: " + InetAddress.getLocalHost.getHostName + " " + InetAddress.getLocalHost.getHostAddress
 }

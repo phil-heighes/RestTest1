@@ -9,9 +9,13 @@ import org.jboss.resteasy.client.jaxrs.{ResteasyClient, ResteasyClientBuilder, R
 object  MyApp {
   def main(args: Array[String]) {
     val client = new ResteasyClientBuilder().build()
-    val target = client.target("http://localhost:8080/Server-1.0-SNAPSHOT/server/host")
-    val response = target.request().get()
-    val value = response.readEntity(classOf[String])
-    println("Response: " + value)
+
+    val servers = List("localhost:8080")
+    servers.foreach(s => {
+      val target = client.target("http://" + s + "/RestServer-1.0-SNAPSHOT/server/host")
+      val response = target.request().get()
+      val value = response.readEntity(classOf[String])
+      println("Response: " + value)
+    })
  }
 }
